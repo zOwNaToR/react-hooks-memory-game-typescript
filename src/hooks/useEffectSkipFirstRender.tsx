@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const useEffectSkipFirstRender = (
 	callback: React.EffectCallback,
-	dataArr: React.DependencyList
+	dataArr: React.DependencyList | undefined
 ) => {
 	const isInitialRender = useRef(true);
 
