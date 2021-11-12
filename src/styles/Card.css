@@ -18,3 +18,12 @@
 	transition: all ease-in 0.2s;
 	transition-delay: 0s;
 }
+
+.bg-custom-color {
+	background: radial-gradient(
+		circle,
+		rgba(116, 90, 154, 1) 0%,
+		rgba(46, 32, 65, 1) 25%,
+		rgba(24, 17, 34, 1) 100%
+	);
+}

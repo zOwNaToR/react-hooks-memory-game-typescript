@@ -6,7 +6,9 @@ import MemoryGame from './components/MemoryGame';
 const App = () => {
 	return (
 		<>
-			<MemoryGame />
+			<div className='px-2 md:px-3 lg:px-4'>
+				<MemoryGame />
+			</div>
 		</>
 	);
 };

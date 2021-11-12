@@ -5,16 +5,40 @@ import Button from './Button';
 import Firework from './Firework';
 import Overlay from './Overlay';
 import CoolText from './CoolText';
-import GameBoard from './GameBoard';
+import GameBoard, { cardGridColumns } from './GameBoard';
 import useEffectSkipFirstRender from '../hooks/useEffectSkipFirstRender';
 
 const cardImgs: CardType[] = [
-	{ src: '/images/helmet.png', flipped: false, found: false },
-	{ src: '/images/potion.png', flipped: false, found: false },
-	{ src: '/images/ring.png', flipped: false, found: false },
-	{ src: '/images/scroll.png', flipped: false, found: false },
-	{ src: '/images/shield.png', flipped: false, found: false },
-	{ src: '/images/sword.png', flipped: false, found: false },
+	// { src: '/images/helmet.png', flipped: false, found: false },
+	// { src: '/images/potion.png', flipped: false, found: false },
+	// { src: '/images/ring.png', flipped: false, found: false },
+	// { src: '/images/scroll.png', flipped: false, found: false },
+	// { src: '/images/shield.png', flipped: false, found: false },
+	// { src: '/images/sword.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/armor.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/axe.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/axeDouble.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/backpack.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/bow.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/coin.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/dagger.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/envelope.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/gemBlue.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/gemGreen.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/gemRed.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/hammer.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/heart.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/helmet.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/map.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/potionBlue.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/potionGreen.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/potionRed.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/scroll.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/shield.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/tome.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/tools.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/upg_spear.png', flipped: false, found: false },
+	{ src: '/images/IconPack/512/wand.png', flipped: false, found: false },
 ];
 
 // interface MemoryGameProps {}
@@ -34,9 +58,21 @@ const MemoryGame: React.FC = () => {
 		delay: 400,
 	});
 
+	const getUniqueCards = (n: number = cardImgs.length) => {
+		return cardImgs
+			.map((card) => ({
+				...card,
+				id: Math.random(),
+			}))
+			.sort((card) => card.id - 0.5)
+			.slice(0, n);
+	};
 	const shuffleCards = () => {
+		var possibleCardNumbers = Object.keys(cardGridColumns);
+		const uniqueCards = getUniqueCards(+possibleCardNumbers[3]);
+
 		// Duplicate card images, assign a random id and sort randomly with their id
-		const shuffledCards: CardWithId[] = [...cardImgs, ...cardImgs]
+		const shuffledCards: CardWithId[] = [...uniqueCards, ...uniqueCards]
 			.map((card) => ({
 				...card,
 				id: Math.random(),
@@ -136,7 +172,9 @@ const MemoryGame: React.FC = () => {
 				<Button color='pink' className='mb-4' onClick={newMatch}>
 					Nuova partita
 				</Button>
-				{/* <Button color='pink' className='mb-4' onClick={winMatch}> Vinci </Button> */}
+				{/* <Button color='pink' className='mb-4' onClick={winMatch}>
+					Vinci
+				</Button> */}
 				<div>Tentativi effettuati: {tryCount}</div>
 				<GameBoard setChoice={handleChoice} cards={cards} />
 			</div>
